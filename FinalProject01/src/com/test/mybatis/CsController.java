@@ -18,9 +18,11 @@ public class CsController
 	@Autowired
 	private SqlSession sqlsession;
 	
+	// 고객센터 메인 접속 시 사용되는 컨트롤러
 	@RequestMapping(value="/cs.action", method=RequestMethod.GET)
 	public String CsMain(ModelMap model, String fc_code)
 	{	
+		// 처음 접속 시 기본 값으로 자주 묻는 질문 회원 카테고리를 보여줌
 		if (fc_code == null)
 		{
 			fc_code = "1";
@@ -28,47 +30,75 @@ public class CsController
 		
 		ICsDAO dao = sqlsession.getMapper(ICsDAO.class);
 		
+		// 공지사항 제목 조회 DAO
 		model.addAttribute("noticesTitle", dao.noticesTitle());
+		
+		// 자주묻는 질문 제목 조회 DAO
 		model.addAttribute("faqList",dao.faqList(fc_code));
 		
 
 		return "Cs.jsp";
 	}
 	
+	// 자주 묻는 질문 페이지 접속시 사용되는 컨트롤러
 	@RequestMapping(value = "/faq.action", method = RequestMethod.GET)
 	public String faqList(ModelMap model, String fc_code)
 	{
-		ICsDAO dao = sqlsession.getMapper(ICsDAO.class);
-		
+		// 처음 접속 시 기본 값으로 자주 묻는 질문 회원 카테고리를 보여줌
 		if (fc_code == null)
 		{
 			fc_code = "1";
 		}	
+
+		ICsDAO dao = sqlsession.getMapper(ICsDAO.class);
 		
+		// 자주 묻는 질문 리스트 조회 DAO
 		model.addAttribute("faqList", dao.faqList(fc_code));
 		
 		return "Faq.jsp";
 	}
 	
-	@RequestMapping(value = "/inquiaryinsertform.action", method = RequestMethod.GET)
-	public String inquiaryForm(ModelMap model)
+	// 1:1 문의사항 접수 페이지 접속시 사용되는 컨트롤러
+	@RequestMapping(value = "/inquiryinsertform.action", method = RequestMethod.GET)
+	public String inquiryForm(ModelMap model)
 	{
 		ICsDAO dao = sqlsession.getMapper(ICsDAO.class);
 		
-		model.addAttribute("inquiaryCategory",dao.inquiaryCategory());
+		// 문의사항 카테고리 조회 DAO
+		model.addAttribute("inquiryCategory",dao.inquiryCategory());
 		
-		return "IquiaryInsertForm.jsp";
+		return "InquiryInsertForm.jsp";
 	}
 	
-	@RequestMapping(value = "/iquiaryinsert.action", method = RequestMethod.GET)
-	public String iquiaryInsert(ModelMap model, CsDTO dto)
+	// 1:1 문의사항 접수(INSERT)시 사용 되는 컨트롤러
+	@RequestMapping(value = "/inquiryinsert.action", method = RequestMethod.POST)
+	public String iquiryInsert(ModelMap model, CsDTO dto)
 	{
+		dto.setUs_code("2");
+		
 		ICsDAO dao = sqlsession.getMapper(ICsDAO.class);
 		
-		dao.inquiaryInsert(dto);
+		// 문의사항 INSERT DAO
+		dao.inquiryInsert(dto);
 		
 		return "redirect:cs.action";
 				
 	}
+	
+	// 문의사항 내역 페이지 접속 시 사용되는 컨트롤러
+	@RequestMapping(value = "/inquirylist.action", method = RequestMethod.GET)
+	public String iquiryList(ModelMap model , String us_code)
+	{
+		ICsDAO dao = sqlsession.getMapper(ICsDAO.class);
+		
+		// 유저 세션 생기면 삭제
+		us_code = "2";
+		
+		// 문의사항 내역 조회 DAO
+		model.addAttribute("inquiryList",dao.inquiryList(us_code));	
+		
+		return "InquiryList.jsp";
+	}
+	
 	
 }

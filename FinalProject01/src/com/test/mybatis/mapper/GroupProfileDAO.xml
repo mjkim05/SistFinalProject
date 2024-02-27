@@ -46,7 +46,7 @@
                    		   WHERE CG_CODE = #{cg_code})
 	</select>
 	
-	<select id="myProfile" resultType="com.test.mybatis.GroupDTO">
+	<select id="myGroupProfile" resultType="com.test.mybatis.GroupDTO">
 		SELECT M.GM_NICKNAME AS GM_NICKNAME, P.POS_NAME AS POS_NAME,TO_CHAR(TRUNC(M.GM_REGDATE)) AS GM_REGDATE
     		 , M.GM_INTRO AS GM_INTRO, M.GM_PROFILE AS GM_PROFILE
 		FROM POSITION_APPOINT A JOIN POSITION P

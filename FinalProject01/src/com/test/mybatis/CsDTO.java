@@ -3,13 +3,22 @@ package com.test.mybatis;
 public class CsDTO
 {
 	// FAQ 변수
-	String faq_title, faq_content, fc_code, faq_code;
+	private String faq_title, faq_content, fc_code, faq_code;
 	
 	// 문의사항 변수
-	String iqc_code, iqc_name;
-	
-	String iq_code, iq_title, iq_content, us_code, iq_date;
-	String iq_read, ad_code;
+	private String iqc_code, iqc_name;
+	private String iq_code, iq_title, iq_content, us_code, iq_date, iq_state;
+	private String iq_read, ad_code;
+
+	public String getIq_state()
+	{
+		return iq_state;
+	}
+
+	public void setIq_state(String iq_state)
+	{
+		this.iq_state = iq_state;
+	}
 
 	public String getIqc_code()
 	{

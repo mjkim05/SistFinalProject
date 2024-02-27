@@ -180,11 +180,6 @@
     	background: transparent;
 	}
 	
-	.tab-pane
-	{
-		text-align: left;
-	}
-	
 	.nav-link:hover
 	{
     	color: #363636;
@@ -287,7 +282,7 @@
 <div>
 
 <div class="sideBar">
-	 <c:import url="GroupSideBar.jsp" ></c:import>
+	<c:import url="GroupSideBar.jsp" ></c:import>
 	<%-- <jsp:include page="GroupSideBar.jsp" /> --%>
 <%-- 	﻿<%@ include file="GroupSideBar.jsp" %> --%>
 </div>
@@ -361,105 +356,85 @@
 			</div>
 	    <div class="tab-pane fade in mytab" id="myContent" role="tabpanel" aria-labelledby="myPageContent-tab"" tabindex="0">
 	    <div class="Mycontent">	
-			<div>
-	    		<ul class="nav nav-tabs">
-					<li class="nav-item mtab active" >
-						<a href="#allBoard" data-toggle="tab">전체</a>
-					</li>
-					<li class="nav-item mtab">
-						<a href="#regularBoard" data-toggle="tab">정기모임</a>
-					</li>
-					<li class="nav-item mtab">
-						<a href="#impromptuBoard" data-toggle="tab">번개모임</a>
-					</li>
-					<li class="nav-item mtab">
-						<a href="#historyBorad" data-toggle="tab">히스토리</a>
-					</li>
-					<li class="nav-item mtab">
-						<a href="#board" data-toggle="tab">자유게시판</a>
-					</li>
-				</ul>	
+	    	<div>
+	    		 <select name="" id="">
+	    			<option value="">전체글 보기</option>
+	    			<option value="">정기 모임 글 보기</option>
+	    			<option value="">번개 모임 글 보기</option>
+	    			<option value="">히스토리 보기</option>
+	    			<option value="">자유게시판 글 보기</option>
+	    		</select>
 	    	</div>
-	    	
 			<div>
-	  		<div class="allContent">
-	  			<div class="tab-content sidetab"> 
-	  			<!-- 정기모임 -->
-					<div class="tab-pane fade in active" id="regularBoard">
-		  				<table class="table table-hover">
-		  					<tr>
-		  						<th>글번호</th>
-		  						<th>제목</th>
-		  						<th>조회수</th>
-		  						<th>작성일</th>
-		  					</tr>
-		  					<c:forEach var="regularBoard" items="${regularBoard }">
-		  					<tr>
-		  						<td>${regularBoard.mt_code }</td>
-		  						<td>${regularBoard.mt_title }</td>
-		  						<td> - </td>
-		  						<td>${regularBoard.mt_date }</td>
-		  					</tr>
-		  					</c:forEach>
-		  				</table>
-					 </div>  
-	  			<!-- 번개모임 -->
-					<div class="tab-pane fade" id="impromptuBoard">
-		  				<table class="table table-hover">
-		  					<tr>
-		  						<th>글번호</th>
-		  						<th>제목</th>
-		  						<th>조회수</th>
-		  						<th>작성일</th>
-		  					</tr>
-		  					<c:forEach var="impromptuBoard" items="${impromptuBoard }">
-		  					<tr>
-		  						<td>${impromptuBoard.mt_code }</td>
-		  						<td>${impromptuBoard.mt_title }</td>
-		  						<td> - </td>
-		  						<td>${impromptuBoard.mt_date }</td>
-		  					</tr>
-		  					</c:forEach>
-		  				</table>
-					 </div>  
-	  			<!-- 히스토리 -->
-					<div class="tab-pane fade" id="historyBorad">
-		  				<table class="table table-hover">
-		  					<tr>
-		  						<th>글번호</th>
-		  						<th>제목</th>
-		  						<th>조회수</th>
-		  						<th>작성일</th>
-		  					</tr>
-		  					<c:forEach var="historyBorad" items="${historyBorad }">
-		  					<tr>
-		  						<td>${historyBorad.his_code }</td>
-		  						<td>[ ${historyBorad.mt_title } ] 모임의 ${historyBorad.gm_nickname }님이 작성한 히스토리입니다.</td>
-		  						<td>${historyBorad.his_view } </td>
-		  						<td>${historyBorad.his_date }</td>
-		  					</tr>
-		  					</c:forEach>
-		  				</table>
-					 </div>  
-	  			<!-- 자유게시판 -->
-					<div class="tab-pane fade" id="board">
-		  				<table class="table table-hover">
-		  					<tr>
-		  						<th>글번호</th>
-		  						<th>제목</th>
-		  						<th>조회수</th>
-		  						<th>작성일</th>
-		  					</tr>
-		  					<c:forEach var="board" items="${board }">
-		  					<tr>
-		  						<td>${board.brd_code } </td>
-		  						<td> ${board.brd_subject }</td>
-		  						<td> ${board.brd_view } </td>
-		  						<td>${board.brd_date }</td>
-		  					</tr>
-		  					</c:forEach>
-		  				</table>
-					 </div> 
+	  			<div class="allContent">
+	  				<table class="table table-hover">
+	  					<tr>
+	  						<th>글번호</th>
+	  						<th>제목</th>
+	  						<th>조회수</th>
+	  						<th>작성일</th>
+	  					</tr>
+	  					<tr>
+	  						<td>1</td>
+	  						<td>오늘 다같이 파묘 보러 갑니다!!</td>
+	  						<td>431</td>
+	  						<td>2024-02-23</td>
+	  					</tr>
+	  					<tr>
+	  						<td>2</td>
+	  						<td>같이 파묘 보러 가실분</td>
+	  						<td>1,053</td>
+	  						<td>2024-02-15</td>
+	  					</tr>
+	  					<tr>
+	  						<td>3</td>
+	  						<td>솔직히, 말할게 많이 기다려 왔어</td>
+	  						<td>506</td>
+	  						<td>2024-01-13</td>
+	  					</tr>
+	  					<tr>
+	  						<td>4</td>
+	  						<td>너도 그랬을 거라 믿어</td>
+	  						<td>751</td>
+	  						<td>2024-01-13</td>
+	  					</tr>
+	  					<tr>
+	  						<td>5</td>
+	  						<td>오늘이 오길 매일같이 달력을 보면서</td>
+	  						<td>851</td>
+	  						<td>2024-01-13</td>
+	  					</tr>
+	  					<tr>
+	  						<td>6</td>
+	  						<td>Amnesia, 멀어져 가</td>
+	  						<td>1,021</td>
+	  						<td>2024-01-11</td>
+	  					</tr>
+	  					<tr>
+	  						<td>7</td>
+	  						<td>이건 뭔가 잘못 됐어, 사실 도망가는 것</td>
+	  						<td>751</td>
+	  						<td>2024-01-10</td>
+	  					</tr>
+	  					<tr>
+	  						<td>8</td>
+	  						<td>너무 깊었던 실망감</td>
+	  						<td>951</td>
+	  						<td>2024-01-05</td>
+	  					</tr>
+	  					<tr>
+	  						<td>9</td>
+	  						<td>하물며 아물지 않은 기억</td>
+	  						<td>4,156</td>
+	  						<td>2024-01-03</td>
+	  					</tr>
+	  					<tr>
+	  						<td>10</td>
+	  						<td>고개를 돌리며 또 모른 척</td>
+	  						<td>8,051</td>
+	  						<td>2024-01-01</td>
+	  					</tr>
+	  				</table>
 	  				<!-- 페이징 처리 영억 -->
 				      <div class="paging" align="center">
 				         <nav class="page-nav">
@@ -487,11 +462,9 @@
 				            <a href="" class="page-control next-page">다음 페이지</a>
 				         </nav>
 				      </div>
-				 </div>
-				      
-	  			</div> <!-- allContent -->
+	  			</div>
 			</div>	  			
-			</div> <!-- Mycontent -->
+		</div>
 		</div>
 	    <div class="tab-pane fade in mytab" id="myMetting" role="tabpanel" aria-labelledby="myMetting-tab" tabindex="0">
 	    	<div class="MeetingCalender">

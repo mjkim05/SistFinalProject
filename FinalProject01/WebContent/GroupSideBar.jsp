@@ -155,16 +155,14 @@
 <body>
 	<div class="left col-xs-12 col-sm-4 col-md-2">
 		<!-- 그룹 프로필 + 그룹원 목록 -->
-	
-		<ul class="nav nav-tabs">
+		 <ul class="nav nav-tabs">
 			<li class="nav-item mtab active" >
 				<a href="#groupProfile" data-toggle="tab">그룹 프로필</a>
 			</li>
 			<li class="nav-item mtab">
 				<a href="#groupMyProfile" data-toggle="tab">마이 프로필</a>
 			</li>
-		</ul>	
-
+		 </ul>	
 		 <div class="tab-content sidetab"> 
 		 <div class="tab-pane fade in active" id="groupProfile">
 		 	<sapn>${groupProfile.cg_name }</sapn> <br>
@@ -195,9 +193,9 @@
 		 		<!-- <span>밍</span> 그룹원 <br>
 		 		2019.01.01 가입 <br>
 		 		 안녕 반가워용>.< <br> -->
-		 		<span>${myProfile.gm_nickname } </span>${myProfile.pos_name } <br>
-		 		${myProfile.gm_regdate } 가입 <br>
-		 		${myProfile.gm_intro } <br>
+		 		<span>${myGroupProfile.gm_nickname } </span>${myGroupProfile.pos_name } <br>
+		 		${myGroupProfile.gm_regdate } 가입 <br>
+		 		${myGroupProfile.gm_intro } <br>
 		 		 
 		 	</div>
 		 	<div class="profile2">

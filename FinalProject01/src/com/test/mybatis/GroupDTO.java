@@ -3,26 +3,26 @@ package com.test.mybatis;
 public class GroupDTO
 {	
 	// 모임 정보 확인 용 변수
-	String mt_title, mt_meet, mt_name, ao_date, ct_code;
-	int mt_rank;
+	private String mt_title, mt_meet, mt_name, ao_date, ct_code;
+	private int mt_rank;
 	
 	// 그룹 관련 변수
-	String cg_code, gi_code, cg_intro, cg_profile, cg_name, cg_date;
+	private String cg_code, gi_code, cg_intro, cg_profile, cg_name, cg_date;
 
 	// 그룹원 관련 변수
-	String gm_code, gm_nickname, gm_profile, gm_regdate, gm_intro, gm_count;
+	private String gm_code, gm_nickname, gm_profile, gm_regdate, gm_intro, gm_count;
 	
 	// 직위 변수
-	String pos_code, pos_name;
+	private String pos_code, pos_name;
 	
 	// 자유 게시판 변수
-	String brd_name, brd_subject;
+	private String brd_name, brd_subject;
 	
 	//공지사항 변수
-	String nf_title;
+	private String nf_title;
 	
 	// 포인트 변수
-	int group_point;
+	private int group_point;
 
 	
 	public int getMt_rank()

@@ -9,7 +9,7 @@ public interface IGroupDAO
 	public ArrayList<GroupDTO> groupPosition(String cg_code); 		// 그룹 직위 조회
 	public int groupCount (String cg_code);							// 그룹원 수 조회
 	
-	public GroupDTO myProfile(String gm_code);						// 마이프로필 조회
+	public GroupDTO myGroupProfile(String gm_code);				// 마이프로필 조회
 	public ArrayList<GroupDTO> newBorad(String cg_code);			// 자유게시판 조회
 	public ArrayList<GroupDTO> newHistory(String cg_code);			// 히스토리 조회
 	public ArrayList<GroupDTO> noticesList();						// 공지사항 제목 조회

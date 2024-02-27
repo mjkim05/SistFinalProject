@@ -118,15 +118,15 @@
 <div>
 	<h3 class="aaa">1:1 문의 접수</h3>
 	<hr />
-	<form action="">
+	<form action="inquiryinsert.action" method="post">
 		<table class="aaa table table-bordered" >
 			<tr>
 				<th>문의 유형 * </th>
 				<td>
 					<select class="form-select" name="iqc_code">
 					    <option>문의 유형을 선택해주세요.</option>
-						<c:forEach var="inquiaryCategory" items="${inquiaryCategory }">
-							<option value="${inquiaryCategory.iqc_code }">${inquiaryCategory.iqc_name }</option>
+						<c:forEach var="inquiryCategory" items="${inquiryCategory }">
+							<option value="${inquiryCategory.iqc_code }">${inquiryCategory.iqc_name }</option>
 						</c:forEach>
 						<!-- 
 						<option value="">회원</option>
@@ -157,35 +157,11 @@
 				</td>
 			</tr>
 		</table>
-		<hr>
-		<div>
-		<span>문의에 대한 답변 등록시 연락을 드립니다.</span><br>
-		<table class="aaa table table-bordered">
-			<tr>
-				<th rowspan="2">연락 수단</th>
-				<td colspan="2">
-				<input type="radio" name="phone" id="cellphone" /> <label for="cellphone">휴대번호</label>
-				<input type="radio" name="phone" id="telephone"/> <label for="telephone">전화번호</label>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="text" name="" id="" class="form-control" placeholder="번호를 입력해주세요" />
-				</td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td>
-					<input type="text" name="" id="" class="form-control" placeholder="이메일을 입력해주세요" />
-				</td>
-			</tr>	
-			</table>
-		</div>
 		<hr><br>
 		
 		<div class="">
-		<button type="button" class="btn btnSubmit">접수하기</button>
-		<button type="button" class="btn btn-secondary">취소하기</button>
+		<button type="submit" class="btn btnSubmit">접수하기</button>
+		<button type="button" class="btn btn-secondary" onclick="location.href='cs.action'">취소하기</button>
 		</div>
 	</form>
 </div>

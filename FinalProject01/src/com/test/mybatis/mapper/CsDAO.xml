@@ -16,14 +16,29 @@
 		WHERE FC_CODE = #{fc_code}
 	</select>
 	
-	<select id="inquiaryCategory" resultType="com.test.mybatis.CsDTO">
+	<select id="inquiryCategory" resultType="com.test.mybatis.CsDTO">
 		SELECT IQC_NAME, IQC_CODE
 		FROM INQUIARY_CATEGORY
 	</select>
 	
-	<insert id="inquiaryInsert">
+	<insert id="inquiryInsert">
 		INSERT INTO INQUIARY(IQ_CODE,IQC_CODE,IQ_TITLE,IQ_CONTENT,US_CODE)
 		VALUES (SEQ_INQUIARY.NEXTVAL,#{iqc_code},#{iq_title},#{iq_content},#{us_code})
 	</insert>
+	
+	<select id="inquiryList" resultType="com.test.mybatis.CsDTO">
+		SELECT I.IQ_TITLE AS IQ_TITLE, I.IQ_CONTENT AS IQ_CONTENT,  TO_CHAR(TRUNC(I.IQ_DATE),'YYYY-MM-DD') AS IQ_DATE, C.IQC_NAME AS IQC_NAME
+		      ,CASE WHEN IQ_READ IS NULL THEN '접수완료'
+		       WHEN I.IQ_CODE = A.IQ_CODE THEN '처리완료' 
+		       ELSE '관리자 검토중'
+		       END AS IQ_STATE
+		       , I.US_CODE AS US_CODE
+		       , I.IQ_CODE AS IQ_CODE
+		FROM INQUIARY I LEFT JOIN ANSWER A
+		     ON I.IQ_CODE = A.IQ_CODE
+		     JOIN INQUIARY_CATEGORY C
+		     ON I.IQC_CODE = C.IQC_CODE
+		WHERE US_CODE = #{us_code}
+	</select>
 
 </mapper>

@@ -14,66 +14,63 @@ String cp = request.getContextPath();
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://getbootstrap.com/docs/5.3/assets/css/docs.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 <style type="text/css">
-* {
-	text-align: center;
-	font-family: 라인Seed;
-	font-weight: bold;
-	font-size: 15pt;
-}
-
-input {
-	width: 50%;
-	height: 40pt;
-	border-radius: 15px;
-	border: solid 2px #ff8a3d;
-	font-size: 15pt;
-}
-
-.search {
-	position: relative;
-}
-
-.search button {
-	position: absolute;
-	color: #ff8a3d;
-	left: 72%;
-	top: 9px;
-	background: none;
-	border: none;
-}
-
-.accordion
-{
-	margin-left: auto;
-	margin-right: auto;
-	width: 70%;
-}
-
-.answer
-{
-	text-align: left;
-	font-family: 맑은 고딕;
-	font-size: 13pt;
-	background-color: #f3f3f1;
-}
-
-.answer > strong
-{
-	font-family: 맑은 고딕;
-	font-weight: bold;
-	font-size: 15pt;
+	* {
+		text-align: center;
+		font-family: 라인Seed;
+		font-weight: bold;
+		font-size: 15pt;
+	}
 	
-}
+	input {
+		width: 50%;
+		height: 40pt;
+		border-radius: 15px;
+		border: solid 2px #ff8a3d;
+		font-size: 15pt;
+	}
+	
+	.search {
+		position: relative;
+	}
+	
+	.search button {
+		position: absolute;
+		color: #ff8a3d;
+		left: 72%;
+		top: 9px;
+		background: none;
+		border: none;
+	}
+	
+	.accordion
+	{
+		margin-left: auto;
+		margin-right: auto;
+		width: 70%;
+	}
 
-.accordion-button:not(.collapsed)
-{
-	background-color: #ff8000;
-}
+	.answer
+	{
+		text-align: left;
+		font-family: 맑은 고딕;
+		font-weight: bold;
+		font-size: 11pt;
+		background-color: #d5d5d540;
+	}
+
+
+	.accordion-button:not(.collapsed)
+	{
+		background-color: #ff8000;
+		color: white;
+	}
+		
 
 .bi-search 
 {
@@ -122,7 +119,6 @@ hr
 		window.location.href="faq.action?fc_code="+fc_code;
 	}
 
-
 </script>
 
 </head>
@@ -150,15 +146,15 @@ hr
 	</div>
 	<hr />
 	<div class="grid text-center">
-		<div class="g-col-2 g-start-3 faqselect" onclick="faqSelect(1)">회원</div>
-		<div class="g-col-2 faqselect"  onclick="faqSelect(2)">친구</div>
-		<div class="g-col-2 faqselect"  onclick="faqSelect(3)">그룹</div>
-		<div class="g-col-2 faqselect"  onclick="faqSelect(4)">모임</div>
+		<div class="g-col-2 g-start-3 faqselect1" onclick="faqSelect(1)">회원</div>
+		<div class="g-col-2 faqselect2"  onclick="faqSelect(2)">친구</div>
+		<div class="g-col-2 faqselect3"  onclick="faqSelect(3)">그룹</div>
+		<div class="g-col-2 faqselect4"  onclick="faqSelect(4)">모임</div>
 		<div class="g-w-100"></div>
-		<div class="g-col-2 g-start-3 faqselect" onclick="faqSelect(5)">경고</div>
-		<div class="g-col-2 faqselect" onclick="faqSelect(6)">신고</div>
-		<div class="g-col-2 faqselect" onclick="faqSelect(7)">포인트</div>
-		<div class="g-col-2 faqselect" onclick="faqSelect(8)">기타</div>
+		<div class="g-col-2 g-start-3 faqselect5" onclick="faqSelect(5)">경고</div>
+		<div class="g-col-2 faqselect"6 onclick="faqSelect(6)">신고</div>
+		<div class="g-col-2 faqselect7" onclick="faqSelect(7)">포인트</div>
+		<div class="g-col-2 faqselect8" onclick="faqSelect(8)">기타</div>
 	</div>
 	<hr />
 

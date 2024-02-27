@@ -14,6 +14,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <style type="text/css">
@@ -167,6 +169,29 @@
 		color : #ff8000;
 	}
 	
+	.accordion
+	{
+		margin-left: auto;
+		margin-right: auto;
+		width: 70%;
+	}
+	
+	.answer
+	{
+		text-align: left;
+		font-family: 맑은 고딕;
+		font-weight: bold;
+		font-size: 11pt;
+		background-color: #d5d5d540;
+	}
+	
+	.accordion-button:not(.collapsed)
+	{
+		background-color: #ff8000;
+		color: white;
+	}
+		
+	
 </style>
 <script type="text/javascript">
 
@@ -218,9 +243,25 @@
 
 <ul class="list-group">
   <a href="faq.action" class="more">더보기 > </a>
-  <c:forEach var="faqList" items="${faqList}">
+  	<div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+        <c:forEach var="faqList" items="${faqList }">
+       		<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#${faqList.faq_code }" aria-expanded="false" aria-controls="${faqList.faq_code }">
+         		${faqList.faq_title }
+         	</button>
+	        </h2>
+	        <div id="${faqList.faq_code }" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="">
+	          <div class="accordion-body answer">
+	            ${faqList.faq_content }
+	          </div>
+	        </div>
+        </c:forEach>
+        </div>
+     </div>
+  <%-- <c:forEach var="faqList" items="${faqList}">
   	<li class="list-group-item qnaList">${faqList.faq_title }</li>
-  </c:forEach>
+  </c:forEach> --%>
   <!-- <li class="list-group-item qnaList"> Q. 회원 탈퇴 후 재가입이 바로 가능한가요?</li>
   <li class="list-group-item qnaList"> Q. 아이디를 여러개 사용할 수 있나요? </li>
   <li class="list-group-item qnaList"> Q. 로그인에 문제가 있어요</li> -->
@@ -246,13 +287,13 @@
 		<h3> 1:1 문의 </h3>
 			<div class="row row-col-2 input-group">
 				<div class="col inquiry input-group-addon">
-					<a href="inquiaryinsertform.action">
+					<a href="inquiryinsertform.action">
 						<i class="bi bi-chat-left-text"></i>
 						<p>1:1 문의 접수</p>
 					</a>
 				</div>
 				<div class="col inquiry input-group-addon">
-					<a href="QnaList.jsp"> 
+					<a href="inquirylist.action"> 
 						<i class="bi bi-file-earmark-text"></i>
 						<p>1:1 문의 내역</p>
 					</a>

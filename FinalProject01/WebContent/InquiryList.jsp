@@ -133,10 +133,10 @@
 	<hr />
 	<div class="date">
 		<select name="" id="">
-			<option value="">3개월</option>
-			<option value="">6개월</option>
-			<option value="">1년</option>
-			<option value="">2년</option>
+			<option value="3">3개월</option>
+			<option value="6">6개월</option>
+			<option value="12">1년</option>
+			<option value="24">2년</option>
 			<option value="">직접설정</option>
 		</select>
 		<input type="date" /> ~ <input type="date" />
@@ -164,7 +164,7 @@
 	<table class="table">
 		<tr>
 		<thead>
-			<th>번호</th>
+			<th>문의번호</th>
 			<th>문의유형</th>
 			<th>제목</th>
 			<th>문의날짜</th>
@@ -172,7 +172,16 @@
 		</thead>
 		</tr>
 		<tbody class="table-group-divider">
-		<tr>
+		<c:forEach var="inquiryList" items="${inquiryList }">
+			<tr>
+				<td>${inquiryList.iq_code }</td>
+				<td>${inquiryList.iqc_name }</td>
+				<td>${inquiryList.iq_title }</td>
+				<td>${inquiryList.iq_date }</td>
+				<td>${inquiryList.iq_state }</td>
+			</tr>
+		</c:forEach>
+		<!-- <tr>
 			<td>1</td>
 			<td>친구</td>
 			<td>친구 추가가 안됩니다.</td>
@@ -192,7 +201,7 @@
 			<td>신고 포상같은거 없나요?</td>
 			<td>2024-01-10</td>
 			<td>처리완료</td>
-		</tr>
+		</tr> -->
 		</tbody>	
 	</table>
 </div>
