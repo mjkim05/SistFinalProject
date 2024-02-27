@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mybatis.ICsDAO">
+
+	<select id="noticesTitle" resultType="com.test.mybatis.GroupDTO">
+		SELECT NF_TITLE
+		FROM NOTIFICATION
+		ORDER BY NF_CODE DESC
+	</select>
+	
+	<select id="faqList" resultType="com.test.mybatis.CsDTO">
+		SELECT FAQ_TITLE, FAQ_CONTENT, FAQ_CODE
+		FROM FAQ
+		WHERE FC_CODE = #{fc_code}
+	</select>
+	
+	<select id="inquiaryCategory" resultType="com.test.mybatis.CsDTO">
+		SELECT IQC_NAME, IQC_CODE
+		FROM INQUIARY_CATEGORY
+	</select>
+	
+	<insert id="inquiaryInsert">
+		INSERT INTO INQUIARY(IQ_CODE,IQC_CODE,IQ_TITLE,IQ_CONTENT,US_CODE)
+		VALUES (SEQ_INQUIARY.NEXTVAL,#{iqc_code},#{iq_title},#{iq_content},#{us_code})
+	</insert>
+
+</mapper>
