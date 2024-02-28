@@ -87,19 +87,49 @@
 		color: white;
 	}
 	
-	.nav-tabs
+	.nav 
 	{
-		padding: 5px;
+	   	margin-left: 0px !important; 
+	}
+	
+	.nav-link.active, .nav-pills .show>.nav-link 
+	{
+    	color: #ff8000 !important;
+    	background: transparent;
+	}
+	
+	.tab-pane
+	{
+		text-align: left;
+	}
+	
+	.nav-link:hover
+	{
+    	color: #363636;
+	}
+	
+	.nav-link
+	{
+		color: dimgray; 
+		font-size: 21px;
+    	padding: 10px;
+	}
+	
+	.Mycontent
+	{
+	    width: 1343px;
+	    margin-left: 15%;
 	}
 	
 	.table
 	{
-		margin-left: auto;
-		margin-right: auto;
-		width: 70%;
-		
+		box-shadow: 3px 3px 3px #ddd;
 	}
-	
+	.table th
+	{
+		color: #ff8000;
+	}
+
 	/* footer CSS */
 
 	.footer
@@ -147,7 +177,7 @@
 	<br>
 	<div class="Mycontent">
 		<div>
-    		<nav class="nav nav-tabs" role="tablist">
+    		<nav class="nav nav-tabs reporttab" role="tablist">
     			<div class="nav nav-tabs" id="nav-tab" role="tablist">
 				    <button class="nav-link active" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#allReport" 
 				    type="button" role="tab" aria-controls="allReport" aria-selected="true">전체</button>
@@ -171,13 +201,15 @@
 							<th>신고날짜</th>
 							<th>상태</th>
 	  					</tr>
+	  					<c:forEach var="allReportList" items="${allReportList }">
 	  					<tr>
-	  						<td>1</td>
-							<td>그룹</td>
-							<td>그룹 약속해조</td>
-							<td>2024-02-13</td>
-							<td>접수완료</td>
+	  						<td>${allReportList.report_code }</td>
+							<td>${allReportList.report_type }</td>
+							<td>${allReportList.report_content }</td>
+							<td>${allReportList.report_date }</td>
+							<td>${allReportList.report_status }</td>
 	  					</tr>
+	  					</c:forEach>
 	  				</table>
 				  </div>
 				  <div class="tab-pane fade" id="groupReport" role="tabpanel" aria-labelledby="nav-group-tab">
@@ -189,13 +221,15 @@
 							<th>신고날짜</th>
 							<th>상태</th>
 	  					</tr>
+	  					<c:forEach var="groupReportList" items="${groupReportList }">
 	  					<tr>
-	  						<td>1</td>
-							<td>그룹</td>
-							<td>그룹 약속해조</td>
-							<td>2024-02-13</td>
-							<td>접수완료</td>
+	  						<td>${groupReportList.report_code }</td>
+							<td>${groupReportList.report_type }</td>
+							<td>${groupReportList.report_content }</td>
+							<td>${groupReportList.report_date }</td>
+							<td>${groupReportList.report_status }</td>
 	  					</tr>
+	  					</c:forEach>
 	  				</table>
 				  </div>
 				  <div class="tab-pane fade" id="meetingReport" role="tabpanel" aria-labelledby="nav-meeting-tab">
@@ -207,13 +241,15 @@
 							<th>신고날짜</th>
 							<th>상태</th>
 	  					</tr>
+	  					<c:forEach var="meetingReportList" items="${meetingReportList }">
 	  					<tr>
-	  						<td>1</td>
-							<td>그룹</td>
-							<td>그룹 약속해조</td>
-							<td>2024-02-13</td>
-							<td>접수완료</td>
+	  						<td>${meetingReportList.report_code }</td>
+							<td>${meetingReportList.report_type }</td>
+							<td>${meetingReportList.report_content }</td>
+							<td>${meetingReportList.report_date }</td>
+							<td>${meetingReportList.report_status }</td>
 	  					</tr>
+	  					</c:forEach>
 	  				</table>
 				  </div>
 				  <div class="tab-pane fade" id="historyReport" role="tabpanel" aria-labelledby="nav-history-tab">
@@ -225,13 +261,15 @@
 							<th>신고날짜</th>
 							<th>상태</th>
 	  					</tr>
+	  					<c:forEach var="historyReportList" items="${historyReportList }">
 	  					<tr>
-	  						<td>1</td>
-							<td>그룹</td>
-							<td>그룹 약속해조</td>
-							<td>2024-02-13</td>
-							<td>접수완료</td>
+	  						<td>${historyReportList.report_code }</td>
+							<td>${historyReportList.report_type }</td>
+							<td>${historyReportList.report_content }</td>
+							<td>${historyReportList.report_date }</td>
+							<td>${historyReportList.report_status }</td>
 	  					</tr>
+	  					</c:forEach>
 	  				</table>
 				  </div>
 				  <div class="tab-pane fade" id="boardReport" role="tabpanel" aria-labelledby="nav-board-tab">
@@ -243,111 +281,18 @@
 							<th>신고날짜</th>
 							<th>상태</th>
 	  					</tr>
+	  					<c:forEach var="boardportList" items="${boardportList }">
 	  					<tr>
-	  						<td>1</td>
-							<td>그룹</td>
-							<td>그룹 약속해조</td>
-							<td>2024-02-13</td>
-							<td>접수완료</td>
+	  						<td>${boardportList.report_code }</td>
+							<td>${boardportList.report_type }</td>
+							<td>${boardportList.report_content }</td>
+							<td>${boardportList.report_date }</td>
+							<td>${boardportList.report_status }</td>
 	  					</tr>
+	  					</c:forEach>
 	  				</table>
 				  </div>
 			</div>
-				
-    	</div>
-		<div class="reportContent">
-	  		<div class="tab-content sidetab"> 
-				<div class="tab-pane fade in active" id="allReport" role="tabpanel">
-  				<table class="table table-hover">
-  					<tr>
-  						<th>신고번호</th>
-						<th>신고유형</th>
-						<th>신고대상</th>
-						<th>신고날짜</th>
-						<th>상태</th>
-  					</tr>
-  					<tr>
-  						<td>1</td>
-						<td>그룹</td>
-						<td>그룹 약속해조</td>
-						<td>2024-02-13</td>
-						<td>접수완료</td>
-  					</tr>
-  				</table>
-			 	</div>  
-				<div class="tab-pane fade" id="groupReport" role="tabpanel">
-	  				<table class="table table-hover">
-	  					<tr>
-	  						<th>신고번호</th>
-							<th>신고유형</th>
-							<th>신고대상</th>
-							<th>신고날짜</th>
-							<th>상태</th>
-	  					</tr>
-	  					<tr>
-	  						<td>1</td>
-							<td>그룹</td>
-							<td>그룹 약속해조</td>
-							<td>2024-02-13</td>
-							<td>접수완료</td>
-	  					</tr>
-	  				</table>
-				 </div>  
-				<div class="tab-pane fade" id="meetingReport" role="tabpanel">
-	  				<table class="table table-hover">
-	  					<tr>
-	  						<th>신고번호</th>
-							<th>신고유형</th>
-							<th>신고대상</th>
-							<th>신고날짜</th>
-							<th>상태</th>
-	  					</tr>
-	  					<tr>
-	  						<td>1</td>
-							<td>그룹</td>
-							<td>그룹 약속해조</td>
-							<td>2024-02-13</td>
-							<td>접수완료</td>
-	  					</tr>
-	  				</table>
-				 </div>  
-				<div class="tab-pane fade" id="historyReport" role="tabpanel">
-	  				<table class="table table-hover">
-	  					<tr>
-	  						<th>신고번호</th>
-							<th>신고유형</th>
-							<th>신고대상</th>
-							<th>신고날짜</th>
-							<th>상태</th>
-	  					</tr>
-	  					<tr>
-	  						<td>1</td>
-							<td>그룹</td>
-							<td>그룹 약속해조</td>
-							<td>2024-02-13</td>
-							<td>접수완료</td>
-	  					</tr>
-	  				</table>
-				 </div>  
-				<div class="tab-pane fade" id="boardReport" role="tabpanel">
-	  				<table class="table table-hover">
-	  					<tr>
-	  						<th>신고번호</th>
-							<th>신고유형</th>
-							<th>신고대상</th>
-							<th>신고날짜</th>
-							<th>상태</th>
-	  					</tr>
-	  					<tr>
-	  						<td>1</td>
-							<td>그룹</td>
-							<td>그룹 약속해조</td>
-							<td>2024-02-13</td>
-							<td>접수완료</td>
-	  					</tr>
-	  				</table>
-				 </div>  
-		 	</div>
 		</div> <!-- reportContent -->
 	</div> <!-- Mycontent -->
 </div>

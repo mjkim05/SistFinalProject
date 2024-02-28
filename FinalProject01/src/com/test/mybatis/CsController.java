@@ -8,6 +8,7 @@ package com.test.mybatis;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -103,10 +104,21 @@ public class CsController
 	
 	// 신고내역 페이지 접속 시 사용되는 컨트롤러
 	@RequestMapping(value = "/reportlist.woori", method = RequestMethod.GET)
-	public String reportList(ModelMap map, String us_code)
+	public String reportList(ModelMap model, String us_code)
 	{
+		IReportDAO dao = sqlsession.getMapper(IReportDAO.class);
 		
-		return "ReportList2.jsp";
+		// 유저 세션 생기면 삭제
+		us_code = "2";
+		
+		// 신고 내역 조회 DAO
+		model.addAttribute("allReportList", dao.allReportList(us_code));
+		model.addAttribute("boardportList", dao.boardportList(us_code));
+		model.addAttribute("groupReportList", dao.groupReportList(us_code));
+		model.addAttribute("meetingReportList", dao.meetingReportList(us_code));
+		model.addAttribute("historyReportList", dao.historyReportList(us_code));
+		
+		return "ReportList.jsp";
 	}
 	
 }

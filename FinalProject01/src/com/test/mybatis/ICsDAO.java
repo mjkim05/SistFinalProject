@@ -10,4 +10,5 @@ public interface ICsDAO
 	public ArrayList<CsDTO> inquiryCategory();				// 문의사항 카테고리 조회
 	public int inquiryInsert(CsDTO dto);					// 1:1 문의사항 입력
 	public ArrayList<CsDTO> inquiryList(String us_code);	// 1:1 문의사항 내역 조회
+	
 }
