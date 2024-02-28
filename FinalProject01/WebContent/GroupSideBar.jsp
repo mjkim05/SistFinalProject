@@ -200,7 +200,7 @@
 		 	</div>
 		 	<div class="profile2">
 				<button type="button" class="button">번개 모임 발의</button>
-				<button class="button" onclick="location.href='groupmypage.action'">마이페이지</button>
+				<button class="button" onclick="location.href='groupmypage.woori'">마이페이지</button>
 				<hr>
 		 	</div>
 		</div>

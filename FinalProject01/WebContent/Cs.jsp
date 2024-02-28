@@ -129,6 +129,7 @@
 		width: 70%;
 	}
 	
+	
 	.more
 	{
 		color: black;
@@ -191,13 +192,34 @@
 		color: white;
 	}
 		
+	.report
+	{
+	    background-color: #f2f2f2;
+	    padding: 21px;
+	    width: 170px;
+	    margin-left: 72px;
+	    border-radius: 5px
+	}
+	
+	.report a 
+	{
+	    color: gray;
+	    text-decoration: none;
+	    font-size: 20px;
+	}
+	
+	.report i
+	{
+		color: gray;
+		font-size: 25pt;
+	}
 	
 </style>
 <script type="text/javascript">
 
 	function faqSelect(fc_code)
 	{	
-		window.location.href="cs.action?fc_code="+fc_code;
+		window.location.href="cs.woori?fc_code="+fc_code;
 	}
 
 </script>
@@ -242,7 +264,7 @@
 <hr />
 
 <ul class="list-group">
-  <a href="faq.action" class="more">더보기 > </a>
+  <a href="faq.woori" class="more">더보기 > </a>
   	<div class="accordion" id="accordionExample">
       <div class="accordion-item">
         <h2 class="accordion-header">
@@ -287,13 +309,13 @@
 		<h3> 1:1 문의 </h3>
 			<div class="row row-col-2 input-group">
 				<div class="col inquiry input-group-addon">
-					<a href="inquiryinsertform.action">
+					<a href="inquiryinsertform.woori">
 						<i class="bi bi-chat-left-text"></i>
 						<p>1:1 문의 접수</p>
 					</a>
 				</div>
 				<div class="col inquiry input-group-addon">
-					<a href="inquirylist.action"> 
+					<a href="inquirylist.woori"> 
 						<i class="bi bi-file-earmark-text"></i>
 						<p>1:1 문의 내역</p>
 					</a>
@@ -304,20 +326,12 @@
     <div class="g-col-3">
     	<div>
 		<h3> 신고 </h3>
-			<div class="row row-col-2 input-group">
-				<div class="col inquiry input-group-addon">
-					<a href="">
+				<div class="col report">
+					<a href="reportlist.woori"> 
 						<i class="bi bi-megaphone"></i>
-						<p>신고 접수</p>
-					</a>
-				</div>
-				<div class="col inquiry input-group-addon">
-					<a href=""> 
-						<i class="bi bi-file-earmark-text"></i>
 						<p>신고 내역</p>
 					</a>
 				</div>
-			</div> <!-- end row row-col-2 -->
 		</div>
   </div>
   

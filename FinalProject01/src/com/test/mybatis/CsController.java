@@ -19,7 +19,7 @@ public class CsController
 	private SqlSession sqlsession;
 	
 	// 고객센터 메인 접속 시 사용되는 컨트롤러
-	@RequestMapping(value="/cs.action", method=RequestMethod.GET)
+	@RequestMapping(value="/cs.woori", method=RequestMethod.GET)
 	public String CsMain(ModelMap model, String fc_code)
 	{	
 		// 처음 접속 시 기본 값으로 자주 묻는 질문 회원 카테고리를 보여줌
@@ -41,7 +41,7 @@ public class CsController
 	}
 	
 	// 자주 묻는 질문 페이지 접속시 사용되는 컨트롤러
-	@RequestMapping(value = "/faq.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/faq.woori", method = RequestMethod.GET)
 	public String faqList(ModelMap model, String fc_code)
 	{
 		// 처음 접속 시 기본 값으로 자주 묻는 질문 회원 카테고리를 보여줌
@@ -59,7 +59,7 @@ public class CsController
 	}
 	
 	// 1:1 문의사항 접수 페이지 접속시 사용되는 컨트롤러
-	@RequestMapping(value = "/inquiryinsertform.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/inquiryinsertform.woori", method = RequestMethod.GET)
 	public String inquiryForm(ModelMap model)
 	{
 		ICsDAO dao = sqlsession.getMapper(ICsDAO.class);
@@ -71,7 +71,7 @@ public class CsController
 	}
 	
 	// 1:1 문의사항 접수(INSERT)시 사용 되는 컨트롤러
-	@RequestMapping(value = "/inquiryinsert.action", method = RequestMethod.POST)
+	@RequestMapping(value = "/inquiryinsert.woori", method = RequestMethod.POST)
 	public String iquiryInsert(ModelMap model, CsDTO dto)
 	{
 		dto.setUs_code("2");
@@ -86,7 +86,7 @@ public class CsController
 	}
 	
 	// 문의사항 내역 페이지 접속 시 사용되는 컨트롤러
-	@RequestMapping(value = "/inquirylist.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/inquirylist.woori", method = RequestMethod.GET)
 	public String iquiryList(ModelMap model , String us_code)
 	{
 		ICsDAO dao = sqlsession.getMapper(ICsDAO.class);
@@ -100,5 +100,13 @@ public class CsController
 		return "InquiryList.jsp";
 	}
 	
+	
+	// 신고내역 페이지 접속 시 사용되는 컨트롤러
+	@RequestMapping(value = "/reportlist.woori", method = RequestMethod.GET)
+	public String reportList(ModelMap map, String us_code)
+	{
+		
+		return "ReportList2.jsp";
+	}
 	
 }

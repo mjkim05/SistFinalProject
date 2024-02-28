@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1 문의사항 등록 - 우리만</title>
+<title>신고접수 - 우리만</title>
 <link rel="stylesheet" href="<%=cp%>/css/font.css">
 <link rel="stylesheet" href="<%=cp%>/css/memberHeader.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -116,38 +116,29 @@
 </div>
 
 <div>
-	<h3 class="aaa">1:1 문의 접수</h3>
+	<h3 class="aaa">신고 접수</h3>
 	<hr />
-	<form action="inquiryinsert.action" method="post">
+	<form action="reportinsert.action" method="post">
 		<table class="aaa table table-bordered" >
 			<tr>
-				<th>문의 유형 * </th>
+				<th>신고 유형 * </th>
 				<td>
-					<select class="form-select" name="iqc_code">
-					    <option>문의 유형을 선택해주세요.</option>
-						<c:forEach var="inquiryCategory" items="${inquiryCategory }">
-							<option value="${inquiryCategory.iqc_code }">${inquiryCategory.iqc_name }</option>
-						</c:forEach>
-						<!-- 
-						<option value="">회원</option>
-						<option value="">친구</option>
+					<select class="form-select" name="report_category">
+					    <option>신고 유형을 선택해주세요.</option>
 						<option value="">그룹</option>
-						<option value="">신고</option>
-						<option value="">포인트</option> 
-						-->
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<th>문의 제목 *</th>
+				<th>신고 제목 *</th>
 				<td>
 					<input class="form-control" name="iq_title" type="text" placeholder="제목을 작성해주세요"/>
 				</td>
 			</tr>
 			<tr>
-				<th>문의 내용 *</th>
+				<th>신고 내용 *</th>
 				<td>
-					<textarea class="form-control" name="iq_content" rows="10" cols="100" placeholder="문의 내용을 작성해주세요"></textarea>
+					<textarea class="form-control" name="iq_content" rows="10" cols="100" placeholder="신고 내용을 작성해주세요"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -160,7 +151,7 @@
 		<hr><br>
 		
 		<div class="">
-		<button type="submit" class="btn btnSubmit">접수하기</button>
+		<button type="submit" class="btn btnSubmit">신고하기</button>
 		<button type="button" class="btn btn-secondary" onclick="location.href='cs.action'">취소하기</button>
 		</div>
 	</form>
@@ -169,14 +160,13 @@
 <br><br>
 
 <div class="aaa bbb">
-문의내용 답변 안내<br><br>
-답변은 마이룸 또는 회원정보에 등록된 이메일로 확인 가능합니다. (문의내용에 따라 고객센터 또는 매장에서 연락드릴 수 있습니다.)<br>
-당일 17시 이후 문의건과 공휴일 1:1 문의는 문의 유형과 이름/연락처/이메일 주소를 남겨 주시면 확인 후 운영시간에 통지해 드립니다.<br>
+신고 사항 답변 안내<br><br>
+신고 사항은 담당자가 확인한 후 우리만 이용약관 및 운영원칙에 따라 적절한 조치를 취하고 있습니다.<br>
+신고된 게시글, 댓글, 대댓글은 신고 즉시 블라인드 처리 되며, 추후 결과에 따라 블라인드 해제가 될 수 있습니다. <br>
+당일 17시 이후 신고건과 공휴일 신고는 신고 유형과 신고 내용 확인 후 운영시간에 통지해 드립니다.<br>
 정상근무일 기준이며, 통지예정일이 휴일인 경우 다음 정상 근무일에 진행 됩니다.<br>
-설/추석 연휴 기간 동안은 고객센터 휴무로 인해 1:1 문의 답변이 불가 합니다.<br>
+설/추석 연휴 기간 동안은 고객센터 휴무로 인해 신고 처리 답변이 불가 합니다.<br>
 설/추석 연후 끝난 이후부터 순차적으로 답변드릴 예정이니 양해 부탁드립니다.<br>
-신학기(3월, 9월)에는 문의량이 급증하여 답변이 지연될 수 있습니다.<br>
-
 </div>
 
 

@@ -18,7 +18,7 @@ public class GroupController
 	@Autowired
 	private SqlSession sqlsession;
 	
-	@RequestMapping(value="/groupside.action", method=RequestMethod.GET)
+	@RequestMapping(value="/groupside.woori", method=RequestMethod.GET)
 	public String groupProfileList(ModelMap model)
 	{
 		String cg_code = "1";
@@ -34,10 +34,10 @@ public class GroupController
 		model.addAttribute("myGroupProfile", dao.myGroupProfile(gm_code));
 		
 		//return "GroupSideBar.jsp";
-		return "/groupmain.action";
+		return "/groupmain.woori";
 	}
 	
-	@RequestMapping(value = "/groupmain.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/groupmain.woori", method = RequestMethod.GET)
 	public String groupMain(ModelMap model)
 	{
 		String cg_code = "1";
@@ -54,7 +54,7 @@ public class GroupController
 		return "GroupMain.jsp";
 	}
 	
-	@RequestMapping(value = "/groupmypage.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/groupmypage.woori", method = RequestMethod.GET)
 	public String groupMypage(ModelMap model, String gm_code, String us_code)
 	{
 		gm_code = "2";

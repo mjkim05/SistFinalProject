@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/font.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -304,7 +305,7 @@
 				  
 				    <button class="nav-link" id="myMetting-tab" data-bs-toggle="tab" data-bs-target="#myMetting" 
 				    type="button" role="tab" aria-controls="myMetting" aria-selected="false" tabindex="-1">모임 일정</button>
-				  <span><a href="">로그아웃</a><a href="cs.action">고객센터</a></span>
+				  <span><a href="">로그아웃</a><a href="cs.woori">고객센터</a></span>
 			</div>
 		</div>
 		<div class="tab-content">
@@ -337,9 +338,6 @@
 				</div>
 				<div>
 					<p><span class="header">이름</span><span class="body">${myProfile.us_name }</span></p>
-				</div>
-				<div>
-					<p><span class="header">생일</span><span class="body">${myProfile.us_birthday }</span></p>
 				</div>
 				<div>
 					<p><span class="header">이메일</span><span class="body">${myProfile.us_email }</span></p>

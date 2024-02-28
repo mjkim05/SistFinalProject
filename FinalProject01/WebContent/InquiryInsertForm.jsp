@@ -118,7 +118,7 @@
 <div>
 	<h3 class="aaa">1:1 문의 접수</h3>
 	<hr />
-	<form action="inquiryinsert.action" method="post">
+	<form action="inquiryinsert.woori" method="post">
 		<table class="aaa table table-bordered" >
 			<tr>
 				<th>문의 유형 * </th>
@@ -161,7 +161,7 @@
 		
 		<div class="">
 		<button type="submit" class="btn btnSubmit">접수하기</button>
-		<button type="button" class="btn btn-secondary" onclick="location.href='cs.action'">취소하기</button>
+		<button type="button" class="btn btn-secondary" onclick="location.href='cs.woori'">취소하기</button>
 		</div>
 	</form>
 </div>
@@ -170,19 +170,14 @@
 
 <div class="aaa bbb">
 문의내용 답변 안내<br><br>
-답변은 마이룸 또는 회원정보에 등록된 이메일로 확인 가능합니다. (문의내용에 따라 고객센터 또는 매장에서 연락드릴 수 있습니다.)<br>
-당일 17시 이후 문의건과 공휴일 1:1 문의는 문의 유형과 이름/연락처/이메일 주소를 남겨 주시면 확인 후 운영시간에 통지해 드립니다.<br>
+답변은 문의사항 내역에서 확인이 가능합니다. (문의내용에 따라 고객센터에서 연락드릴 수 있습니다.)<br>
+당일 17시 이후 문의건과 공휴일 1:1 문의는 문의 유형과 문의 내용을 남겨 주시면 확인 후 운영시간에 통지해 드립니다.<br>
 정상근무일 기준이며, 통지예정일이 휴일인 경우 다음 정상 근무일에 진행 됩니다.<br>
 설/추석 연휴 기간 동안은 고객센터 휴무로 인해 1:1 문의 답변이 불가 합니다.<br>
 설/추석 연후 끝난 이후부터 순차적으로 답변드릴 예정이니 양해 부탁드립니다.<br>
-신학기(3월, 9월)에는 문의량이 급증하여 답변이 지연될 수 있습니다.<br>
+연말 및 새해(12월, 1월)에는 문의량이 급증하여 답변이 지연될 수 있습니다.<br>
 
 </div>
-
-
-
-
-
 
 <!-- footer 영역 추후 임포트 -->
 <div class="footer col-xs-12 col-sm-12 col-md-12">
