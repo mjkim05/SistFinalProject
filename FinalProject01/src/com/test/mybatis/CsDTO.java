@@ -8,7 +8,84 @@ public class CsDTO
 	// 문의사항 변수
 	private String iqc_code, iqc_name;
 	private String iq_code, iq_title, iq_content, us_code, iq_date, iq_state;
-	private String iq_read, ad_code;
+	private String iq_read, as_content, as_date;
+	
+	// 관리자 변수
+	private String ad_name, ad_code;
+	
+	// 공지사항 변수
+	private String nf_code, nf_date, nf_title, nf_content;
+	
+	
+	public String getNf_code()
+	{
+		return nf_code;
+	}
+
+	public void setNf_code(String nf_code)
+	{
+		this.nf_code = nf_code;
+	}
+
+	public String getNf_date()
+	{
+		return nf_date;
+	}
+
+	public void setNf_date(String nf_date)
+	{
+		this.nf_date = nf_date;
+	}
+
+	public String getNf_title()
+	{
+		return nf_title;
+	}
+
+	public void setNf_title(String nf_title)
+	{
+		this.nf_title = nf_title;
+	}
+
+	public String getNf_content()
+	{
+		return nf_content;
+	}
+
+	public void setNf_content(String nf_content)
+	{
+		this.nf_content = nf_content;
+	}
+
+	public String getAd_name()
+	{
+		return ad_name;
+	}
+
+	public void setAd_name(String ad_name)
+	{
+		this.ad_name = ad_name;
+	}
+
+	public String getAs_date()
+	{
+		return as_date;
+	}
+
+	public void setAs_date(String as_date)
+	{
+		this.as_date = as_date;
+	}
+
+	public String getAs_content()
+	{
+		return as_content;
+	}
+
+	public void setAs_content(String as_content)
+	{
+		this.as_content = as_content;
+	}
 
 	public String getIq_state()
 	{

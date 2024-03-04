@@ -5,15 +5,18 @@
 <mapper namespace="com.test.mybatis.IGroupDAO">
 
 	<select id="newBorad" resultType="com.test.mybatis.GroupDTO">
-		SELECT G.BRD_NAME AS BRD_NAME, B.BRD_SUBJECT AS BRD_SUBJECT
+		SELECT G.BRD_NAME AS BRD_NAME, B.BRD_SUBJECT AS BRD_SUBJECT, BR.BRDR_CODE AS BRDR_CODE
 		FROM BOARD B JOIN CREATE_GROUP G 
 		     ON B.CG_CODE = G.CG_CODE
+		     LEFT JOIN BOARD_REPORT BR
+		     ON BR.BRD_CODE = B.BRD_CODE
 		WHERE G.CG_CODE = #{cg_code}
 		ORDER BY B.BRD_DATE DESC
 	</select>
 	
 	<select id="newHistory" resultType="com.test.mybatis.GroupDTO">
-		SELECT M.MT_TITLE AS MT_TITLE, M.GM_NICKNAME AS GM_NICKNAME
+		SELECT '[' || M.MT_TITLE ||']모임의 '|| M.GM_NICKNAME ||'님 히스토리입니다.' AS HIS_TITLE
+		      ,HR.HR_CODE AS HR_CODE
 		FROM MEETING M JOIN ATTEND_OPINION A
 		     ON M.MT_CODE = A.MT_CODE
 		     JOIN HISTORY H
@@ -22,6 +25,8 @@
 		     ON M.GM_CODE = A.GM_CODE
 		     JOIN GROUP_INVITE I
 		     ON M.GI_CODE = I.GI_CODE
+		     LEFT JOIN HISTORY_REPORT HR
+		     ON HR.HIS_CODE = H.HIS_CODE 
 		WHERE I.CG_CODE = #{cg_code}
 	</select>
 

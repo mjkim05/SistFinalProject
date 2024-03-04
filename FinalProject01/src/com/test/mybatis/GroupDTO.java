@@ -2,48 +2,27 @@ package com.test.mybatis;
 
 public class GroupDTO
 {	
+	// 그룹 관련 변수
+	private String cg_code, gi_code, cg_intro, cg_profile, cg_name, cg_date, gm_count;
+	private int group_point;
+
+	// 그룹원 관련 변수
+	private String gm_code, gm_nickname, gm_profile, gm_regdate, gm_intro;
+	// 직위 변수
+	private String pos_code, pos_name;
+	// 회원 변수
+	private String us_code1, us_code2;
+
+	
 	// 모임 정보 확인 용 변수
 	private String mt_title, mt_meet, mt_name, ao_date, ct_code;
 	private int mt_rank;
 	
-	// 그룹 관련 변수
-	private String cg_code, gi_code, cg_intro, cg_profile, cg_name, cg_date;
-
-	// 그룹원 관련 변수
-	private String gm_code, gm_nickname, gm_profile, gm_regdate, gm_intro, gm_count;
-	
-	// 직위 변수
-	private String pos_code, pos_name;
-	
 	// 자유 게시판 변수
-	private String brd_name, brd_subject;
+	private String brd_name, brd_subject, brdr_code;
 	
-	//공지사항 변수
-	private String nf_title;
-	
-	// 포인트 변수
-	private int group_point;
-
-	
-	public int getMt_rank()
-	{
-		return mt_rank;
-	}
-
-	public void setMt_rank(int mt_rank)
-	{
-		this.mt_rank = mt_rank;
-	}
-
-	public String getGm_count()
-	{
-		return gm_count;
-	}
-
-	public void setGm_count(String gm_count)
-	{
-		this.gm_count = gm_count;
-	}
+	// 히스토리 변수
+	private String hr_code, his_title;
 
 	public String getMt_title()
 	{
@@ -95,14 +74,14 @@ public class GroupDTO
 		this.ct_code = ct_code;
 	}
 
-	public String getCg_date()
+	public int getMt_rank()
 	{
-		return cg_date;
+		return mt_rank;
 	}
 
-	public void setCg_date(String cg_date)
+	public void setMt_rank(int mt_rank)
 	{
-		this.cg_date = cg_date;
+		this.mt_rank = mt_rank;
 	}
 
 	public String getCg_code()
@@ -125,16 +104,6 @@ public class GroupDTO
 		this.gi_code = gi_code;
 	}
 
-	public String getCg_name()
-	{
-		return cg_name;
-	}
-	
-	public void setCg_name(String cg_name)
-	{
-		this.cg_name = cg_name;
-	}
-	
 	public String getCg_intro()
 	{
 		return cg_intro;
@@ -153,6 +122,26 @@ public class GroupDTO
 	public void setCg_profile(String cg_profile)
 	{
 		this.cg_profile = cg_profile;
+	}
+
+	public String getCg_name()
+	{
+		return cg_name;
+	}
+
+	public void setCg_name(String cg_name)
+	{
+		this.cg_name = cg_name;
+	}
+
+	public String getCg_date()
+	{
+		return cg_date;
+	}
+
+	public void setCg_date(String cg_date)
+	{
+		this.cg_date = cg_date;
 	}
 
 	public String getGm_code()
@@ -205,6 +194,16 @@ public class GroupDTO
 		this.gm_intro = gm_intro;
 	}
 
+	public String getGm_count()
+	{
+		return gm_count;
+	}
+
+	public void setGm_count(String gm_count)
+	{
+		this.gm_count = gm_count;
+	}
+
 	public String getPos_code()
 	{
 		return pos_code;
@@ -245,14 +244,34 @@ public class GroupDTO
 		this.brd_subject = brd_subject;
 	}
 
-	public String getNf_title()
+	public String getBrdr_code()
 	{
-		return nf_title;
+		return brdr_code;
 	}
 
-	public void setNf_title(String nf_title)
+	public void setBrdr_code(String brdr_code)
 	{
-		this.nf_title = nf_title;
+		this.brdr_code = brdr_code;
+	}
+
+	public String getHr_code()
+	{
+		return hr_code;
+	}
+
+	public void setHr_code(String hr_code)
+	{
+		this.hr_code = hr_code;
+	}
+
+	public String getHis_title()
+	{
+		return his_title;
+	}
+
+	public void setHis_title(String his_title)
+	{
+		this.his_title = his_title;
 	}
 
 	public int getGroup_point()
@@ -264,9 +283,6 @@ public class GroupDTO
 	{
 		this.group_point = group_point;
 	}
-	
-	
-	
-	
-	
+
+		
 }

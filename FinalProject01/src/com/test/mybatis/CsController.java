@@ -32,7 +32,7 @@ public class CsController
 		ICsDAO dao = sqlsession.getMapper(ICsDAO.class);
 		
 		// 공지사항 제목 조회 DAO
-		model.addAttribute("noticesTitle", dao.noticesTitle());
+		model.addAttribute("noticesTitle", dao.noticesList());
 		
 		// 자주묻는 질문 제목 조회 DAO
 		model.addAttribute("faqList",dao.faqList(fc_code));
@@ -121,4 +121,51 @@ public class CsController
 		return "ReportList.jsp";
 	}
 	
+	
+	// 검색시 자주 묻는 질문 조회 컨트롤러
+	@RequestMapping(value = "/searchfaqlist.woori", method = RequestMethod.POST)
+	public String searchFaqList(ModelMap model, String searchKeyword)
+	{
+		ICsDAO dao = sqlsession.getMapper(ICsDAO.class);
+		
+		model.addAttribute("searchFaqList",dao.searchFaqList(searchKeyword));
+		
+		return "SearchFaqList.jsp";
+	}
+	
+	// 문의사항 게시글 조회 컨트롤러
+	@RequestMapping(value = "/inquirypost.woori", method = RequestMethod.GET)
+	public String inquiryBoard(ModelMap model, String iq_code)
+	{
+		ICsDAO dao = sqlsession.getMapper(ICsDAO.class);
+		
+		model.addAttribute("inquirypost", dao.inquiryPost(iq_code));
+		
+		
+		return "InquiryPost.jsp";
+	}
+	
+	// 공지사항 게시판 컨트롤러
+	@RequestMapping(value="/noticeslist.woori" ,method = RequestMethod.GET)
+	public String noticesList(ModelMap model)
+	{
+		ICsDAO dao = sqlsession.getMapper(ICsDAO.class);
+		
+		model.addAttribute("noticesList", dao.noticesList());
+		
+		
+		return "NoticesList.jsp";
+	}
+	
+	@RequestMapping(value = "/noticespost.woori" ,method = RequestMethod.GET)
+	public String noticesListBoard(ModelMap model , String nf_code)
+	{
+		ICsDAO dao = sqlsession.getMapper(ICsDAO.class);
+		
+		model.addAttribute("noticespost", dao.noticesListPost(nf_code));
+		
+		return "NoticesPost.jsp";
+	}
+	
 }
+

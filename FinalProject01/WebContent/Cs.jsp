@@ -15,6 +15,7 @@
 <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 
+<script type="text/javascript" src="<%=cp%>/js/ajax.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -32,19 +33,20 @@
 		width: 50%;
 		height: 40pt;
 		border-radius: 15px;
-		border: solid 2px #ff8a3d;
+		border: solid 2px #ff8000;
 		font-size: 15pt;
 	}
 	
 	.search
 	{
 		position: relative;
+		height: 42px;
 	}
 	
 	.search button
 	{
 		position: absolute;
-   		color: #ff8a3d;
+   		color: #ff8000;
     	left: 72%;
     	top: 9px;
    		background: none;
@@ -156,13 +158,13 @@
 	.input-group-addon + .input-group-addon{position:relative;}
 	.input-group-addon + .input-group-addon:before{
 	    content: '';
-    display: block;
-    width: 1px;
-    height: 70%;
-    background: #939393;
-    position: absolute;
-    top: 22px;
-    left: 0;
+	    display: block;
+	    width: 1px;
+	    height: 70%;
+	    background: #939393;
+	    position: absolute;
+	    top: 22px;
+	    left: 0;
 	}
 	
 	.faqselect:focus
@@ -214,13 +216,205 @@
 		font-size: 25pt;
 	}
 	
+	/* 검색어 css */
+	#searchList
+	{	
+		border: 2px solid #ff8000;
+	    width: 50%;
+	    position: absolute;
+	    font-weight: bold;
+	    color: #343;
+	    display: none;
+	    background-color: white;
+	    margin-left: 25%;
+	    z-index: 1;
+	}
+ 	#searchList a	
+ 	{
+		padding: 2px;
+	    text-decoration: none;
+	    color: #343;
+	    font-size: 20px;
+	} 
+	#searchList #footer
+	{
+		height: 14px;
+		background-color: #DDD;
+		text-align: right;
+		padding: 5px;
+		font-size: small;
+	}
+	
+	
+	
 </style>
 <script type="text/javascript">
-
+	
+	// 자주 묻는 질문 카테고리 클릭시 실행되는 함수
 	function faqSelect(fc_code)
 	{	
 		window.location.href="cs.woori?fc_code="+fc_code;
 	}
+	
+	// 검색 기능을 제공하는 함수
+
+	$(function()
+	{
+		$("#searchFaq").keyup(function()
+		{
+			//alert("확인이염");
+			// 값을 제대로 받아오는지 확인
+			//alert($(this).val());
+			
+			// 검색어를 담을 변수
+			var searchKeyword = $(this).val();
+			
+			// 서버로 전송하기 전 유효성 검사 ====================================================
+			// ① 검색어가 존재할 경우에만 서버로 전송할 수 있도록 처리
+			if(searchKeyword.replace(" ","")=="")	
+			{
+				$("#searchList").css("display","none");
+				return;
+			}		
+			/*	
+			// ② 입력된 검색어가 완성형 한글일 경우에만 
+			//	  검색 키워드를 전송할 수 있도록 처리
+			//    정규표현식 사용
+			var regEx = /^[가-힣]{1,}$/;
+			
+			if(regEx.test(searchKeyword))
+			{
+				return; 
+			}
+			// ==================================================== 서버로 전송하기 전 유효성 검사
+			 */
+			
+			
+		 	var param = "searchKeyword="+searchKeyword;
+					
+			$.ajax(
+			{ 	
+				type:"POST"
+				,url: "searchfaqlist.woori"
+				,data: param
+				,datatype: "xml"
+				,success: function(args)
+				{
+					var searchList = "";
+					
+					//alert("에러 놉~");
+					//alert(args);
+					//alert($(args).find("faqList").val());
+					$(args).find("faqList").each(function()
+					{
+						//alert("들어옴");
+						
+					 	var item = $(this);
+						//alert(item.text());
+						var fqatitle = item.find("faq_title").text();
+						var fqacode = item.find("faq_code").text();
+						var fccode = item.find("fc_code").text();
+						
+						searchList += "<a href='faq.woori?fc_code="+fccode+"#"+fqacode+"'>"+ fqatitle +"</a><br>"
+					});
+					
+					$("#searchList").html(searchList);
+					$("#searchList").css("display","block");
+				}
+				,beforesend: function()
+				{
+					return true;
+				}
+				,error: function(e)
+				{
+					alert(e.responseText);
+				}
+				
+			});
+				
+						
+		});
+		
+	});
+
+
+
+	/* function searchFaqList()
+	{
+		
+		//alert("함호");
+		
+		// 검색어를 담을 변수
+		var searchKeyword = document.getElementById("searchFaq").value;
+		
+		//alert(searchKeyword);
+		
+		
+		// 서버로 전송하기 전 유효성 검사 ====================================================
+		
+		// ① 검색어가 존재할 경우에만 서버로 전송할 수 있도록 처리
+		if(searchKeyword.replace(" ","")=="")	
+		{
+			document.getElementById("searchList").style.display = "none";
+			return;
+		}	
+			
+		// ② 입력된 검색어가 완성형 한글일 경우에만 
+		//	  검색 키워드를 전송할 수 있도록 처리
+		//    정규표현식 사용
+		var regEx = /^[가-힣]{1,}$/;
+		
+		if(regEx.test(searchKeyword))
+		{
+			return;
+		}	
+		
+		//URL 구성
+		var url = "searchfaqlist.woori";
+		
+		ajax = createAjax();
+		
+		ajax.open('GET',url,true);
+		ajax.onreadystatechange = function()
+		{
+			if (ajax.readyState == 4 && ajax.status == 200)
+			{
+				// 수행 업무
+				callback();
+			}
+		};
+		
+		ajax.send("");			
+	}  */
+	
+	/* // 수행 업무
+	function callback()
+	{
+		
+		var doc = responseXML;
+		
+		// 루트 엘리먼트
+		var root = doc.documentElement;
+		
+		// 루트 하위 엘리먼트
+		var faqList = root.getElementByTagName("faqList");
+		
+		// 뿌려질 장소 초기화
+		document.getElementById("searchList").innerHTML = "";
+		
+		for(var i=0; i<faqList.length; i++)
+		{
+			var faq = faqList[i].firstChild.nodeValue;
+			
+			document.getElementById("searchList").innerHTML 
+			+= "<div class = 'searchFqaList'>"+ faq +"</div>";
+		}	
+
+		document.getElementById("searchList").style.display="inline-block";
+		
+	}
+	 */
+	
 
 </script>
 
@@ -243,9 +437,11 @@
 	<br>
 </div>
 <div class="search">
-	<input type="search" placeholder="궁금하신 내용을 검색해주세요." />
+	<input type="search" id="searchFaq" placeholder="궁금하신 내용을 검색해주세요." />
 	<button type="button"><i class="bi bi-search"></i></button>
 	<br><br><br>
+</div>
+<div id="searchList">
 </div>
 
 <h3>자주 묻는 질문</h3>
@@ -262,6 +458,7 @@
 		<div class="g-col-2 faqselect" onclick="faqSelect(8)">기타</div>
 </div>
 <hr />
+
 
 <ul class="list-group">
   <a href="faq.woori" class="more">더보기 > </a>
@@ -347,7 +544,7 @@
 	<h3>공지사항</h3>
 	<hr>
 	<ol class="list-group list-group-numbered">
-	<a class="more">더보기 > </a>
+	<a class="more" href="noticeslist.woori">더보기 > </a>
 	<c:forEach var="noticesTitle" items="${noticesTitle }">
 		<li class="list-group-item notices">${noticesTitle.nf_title }</li>
 	</c:forEach>

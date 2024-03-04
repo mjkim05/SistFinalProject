@@ -5,6 +5,8 @@
 
 package com.test.mybatis;
 
+import java.sql.SQLException;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -73,6 +75,36 @@ public class GroupController
 		model.addAttribute("board", dao.board(gm_code));
 		
 		return "GroupMyPage.jsp";
+	}
+	
+	// 그룹 내 정보 수정 컨트롤러
+	@RequestMapping(value = "/mypageupdate.woori")
+	public String updateMyInfo(GroupDTO dto) throws ClassNotFoundException, SQLException
+	{
+		MyInfoDAO dao = new MyInfoDAO();
+		
+		dto.setGm_code("2");
+		
+		dao.connection();
+		dao.modifyGroupProfile(dto);
+		dao.close();
+		
+		return "redirect:groupmypage.woori";
+	}
+	
+	// 계정 정보 수정 컨트롤러
+	@RequestMapping(value = "/userprofileupdate.woori")
+	public String updateUserProfile(UserDTO dto) throws ClassNotFoundException, SQLException
+	{
+		MyInfoDAO dao = new MyInfoDAO();
+		
+		dto.setUs_code("2");
+		
+		dao.connection();
+		dao.modifyUserProfile(dto);
+		dao.close();
+		
+		return "redirect:groupmypage.woori";
 	}
 	
 	

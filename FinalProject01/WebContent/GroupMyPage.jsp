@@ -17,6 +17,9 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
+<!-- 다음 주소 js -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
 
@@ -31,7 +34,7 @@
 	.myPage
 	{
 		width: 1270px;
-		height: 720px;
+		height: 830px;
 		margin-left:480px;
 		margin-top: 50px;
 		border: 1px solid #ddd;
@@ -56,7 +59,7 @@
 	{
 		border-right: 1px solid #ddd;
 		width: 270px;
-		height: 720px;
+		height: 830px;
 		float: left;
 		font-size: 15px;
 	}
@@ -98,7 +101,7 @@
 	
 
 	/* myPage_MyInfo , myPage_AccountInfo */
-	.myPage_MyInfo, .myPage_AccountInfo
+	.myPage_MyInfo.active, .myPage_AccountInfo.active
 	{
 		border: 1px soild #ddd;
 		border-radius: 15px;
@@ -107,38 +110,61 @@
 		box-shadow: 3px 3px 3px #ddd;
 		margin-left: 30px;
 		margin-right: 30px;
+		display: block;
 	}
 	
-	.myPage_MyInfo div, .myPage_AccountInfo div
+	.myPage_MyInfo, .myPage_AccountInfo
+	{
+		display: none;
+	}
+	
+	.myPage_MyInfo.active div, .myPage_AccountInfo.active div
 	{
 		padding-top: 5px;
 	}
 	
-	.myPage_MyInfo img
+	.myPage_MyInfo.active img, .myPage_AccountInfo.active img
 	{
 		border: 0;
    		border-radius: 50px;
    		width: 50px;
 	}
 	
-	.myPage_MyInfo .header
+	.myPage_MyInfo.active .header
 	{
 		margin-left: 20px;
 		display: inline-block;
 		width: 200px;
 	}
 	
-	.myPage_AccountInfo .header
+	.myPage_AccountInfo.active .header
 	{
 		margin-left: 20px;
 		display: inline-block;
 		width: 200px;
+	}
+	
+	.myPage_MyInfo.active input, .myPage_AccountInfo.active input
+	{
+		padding: 3px;
+		margin: 0px;
 	}
 	
 	.myPage_main
 	{
 		width: 1000px;
 		float: right;
+	}
+	.myPage_main_update
+	{
+		width: 1000px;
+		float: right;
+		height: 
+	}
+	
+	#addr
+	{
+		margin-left: 24%
 	}
 	
 	/* 버튼  */
@@ -278,10 +304,92 @@
 	{
 		padding:20px;
 		padding-top: 30px;
-		
 	}
-
+	
+	#addr input
+	{
+		width: 500px;
+	}
+	
+	
+	
 </style>
+<script type="text/javascript">
+	
+	// 내 정보 변경을 눌렀을 때 호출되는 함수 (display 변경)
+	function updateMyInfo()
+	{
+	 	var myInfo =  document.getElementById("myInfo");
+	 	var updateInfo = document.getElementById("updateMyInfo");
+	 	
+	 	myInfo.className = "myPage_MyInfo";
+	 	updateInfo.className = "myPage_MyInfo active";
+	}
+	
+	// 계정 정보 변경을 눌렀을 때 호출되는 함수 (display 변경)
+	function updateAccoountInfo()
+	{
+	 	var myAccoountInfo =  document.getElementById("myAccoountInfo");
+	 	var updateAccoountInfo = document.getElementById("updateMyAccoountInfo");
+	 	
+	 	myAccoountInfo.className = "myPage_AccountInfo";
+	 	updateAccoountInfo.className = "myPage_AccountInfo active";
+	}
+	
+	// 우편번호 및 주소를 입력해주는 함수
+	function execDaumPostcode()
+	{
+		new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R')
+                {
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== '')
+                    {
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                } 
+                else 
+                {
+                	extraAddr = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("postcode").value = data.zonecode;
+                document.getElementById("address").value = addr + extraAddr;
+                
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("detailAddress").focus();
+            }
+        }).open();
+	}
+	
+	
+</script>
 </head>
 <body>
 <c:import url="MemberHeader.jsp"></c:import>
@@ -297,7 +405,7 @@
 		<div class="myPage_side">
 			<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 				<p><img src="img/cat3.jpg" alt="프로필 사진" /></p>
-				<p>맛밤꿀맛</p>
+				<p>${myGroupProfile.gm_nickname }</p>
 				    <button class="nav-link active" id="myPageMain-tab" data-bs-toggle="tab" data-bs-target="#myPageMain" 
 				    type="button" role="tab" aria-controls="myPageMain" aria-selected="true" tabindex="-1">내 정보</button>
 				    <button class="nav-link" id="myPageContent-tab" data-bs-toggle="tab" data-bs-target="#myContent" 
@@ -311,7 +419,7 @@
 		<div class="tab-content">
 		<div class="tab-pane fade in active show mytab" id="myPageMain" role="tabpanel" aria-labelledby="myPageMain-tab" tabindex="0">
 			<h3>내 정보</h3>
-			<div class="myPage_MyInfo">
+			<div class="myPage_MyInfo active" id="myInfo">
 				<div>
 					<p> <span class="header">프로필 사진 </span>
 						<img alt="프로필 사진" src="img/cat3.jpg">
@@ -326,13 +434,40 @@
 				<div>
 					<p>
 						<span class="header">그룹가입일</span> <span class="body">${myGroupProfile.gm_regdate }</span>
-						<button class="mybtn">정보 변경</button>				
+						<button type="button" class="mybtn" onclick="updateMyInfo()">정보 변경</button>				
 					</p>
 				</div>
 			</div>
+			<div class="myPage_MyInfo" id="updateMyInfo">
+			<form action="mypageupdate.woori" method="post">
+				<div>
+					<p> <span class="header">프로필 사진 </span>
+						<img alt="프로필 사진" src="img/cat3.jpg">
+					</p>
+				</div>
+				<div>
+					<p><span class="header">닉네임</span><span class="body"><input type="text" name="gm_nickname" value="${myGroupProfile.gm_nickname }" placeholder="닉네임을 변경하세요!"/></span></p>
+				</div>
+				<div>
+					<p><span class="header">상태메세지</span> <span class="body"><input type="text" name="gm_intro" value="${myGroupProfile.gm_intro }" placeholder="상태메세지를 변경하세요" /> </span></p>
+				</div>
+				<div>
+					<p>
+						<span class="header">그룹가입일</span> <span class="body">${myGroupProfile.gm_regdate }</span>
+						<button type="submit" class="mybtn">정보 변경</button>				
+						<button type="button" class="mybtn" onclick="location.href='groupmypage.woori'">취소</button>				
+					</p>
+				</div>
+			</form>
+			</div>
 			<hr />						
 				<h3>계정 정보</h3>
-				<div class="myPage_AccountInfo">
+				<div class="myPage_AccountInfo active" id="myAccoountInfo">
+				<div>
+					<p> <span class="header">프로필 사진 </span>
+						<img alt="프로필 사진" src="img/${myProfile.us_profile }">
+					</p>
+				</div>
 				<div>
 					<p><span class="header">아이디</span><span class="body">${myProfile.us_id }</span></p>
 				</div>
@@ -346,15 +481,58 @@
 					 <p><span class="header">전화번호</span><span class="body">${myProfile.us_tel }</span></p>
 				</div>
 				<div>
-					 <p><span class="header">주소</span><span class="body">${myProfile.us_addr }</span></p>
+					 <p><span class="header">주소</span><span class="body">[${myProfile.us_zipcode}] ${myProfile.us_addr} ${myProfile.us_addr2}</span></p>
 				</div>
 				<div>
 				<p>
 					<span class="header">비밀번호</span>	
 					<button class="mybtn pwdbtn">변경</button>
-					<button class="mybtn">정보 변경</button>			
+					<button class="mybtn" onclick="updateAccoountInfo()">정보 변경</button>			
 				</p>
 				</div>
+				</div>
+				<div class="myPage_AccountInfo" id="updateMyAccoountInfo">
+				<form action="userprofileupdate.woori">
+				<div>
+					<p> <span class="header">프로필 사진 </span>
+						<img alt="프로필 사진" src="img/${myProfile.us_profile }">
+						<input type="file" name="us_profile"/>
+					</p>
+				</div>
+				<div>
+					<p><span class="header">아이디</span><span class="body">${myProfile.us_id }</span></p>
+				</div>
+				<div>
+					<p><span class="header">이름</span><span class="body">${myProfile.us_name }</span></p>
+				</div>
+				<div>
+					<p><span class="header">이메일</span><span class="body"><input type="text" name="us_email" value="${myProfile.us_email }" 
+					    placeholder="이메일을 입력해주세요"/></span></p>
+				</div>
+				<div>
+					 <p><span class="header">전화번호</span><span class="body"><input type="text" name="us_tel" value="${myProfile.us_tel }"
+					 placeholder="전화번호를 입력해주세요(- 제외)"/></span></p>
+				</div>
+				<div>
+					 <p><span class="header">주소</span><span class="body">
+						 <input type="text" id="postcode" name="us_zipcode" placeholder="우편번호" value="${myProfile.us_zipcode}">
+						 <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+					 <div id="addr">
+						 <input type="text" id="address" name="us_addr" placeholder="주소" value="${myProfile.us_addr}"><br>
+						 <input type="text" id="detailAddress" name="us_addr2" placeholder="상세주소" value="${myProfile.us_addr2 }">
+					 </div>
+					 </span>
+					 </p>
+				</div>
+				<div>
+				<p>
+					<span class="header">비밀번호</span>	
+					<button class="mybtn pwdbtn">변경</button>
+					<button type="submit" class="mybtn" onclick="()">정보 변경</button>		
+					<button type="button" class="mybtn" onclick="location.href='groupmypage.woori'">취소</button>	
+				</p>
+				</div>
+				</form>
 				</div>
 			</div>
 	    <div class="tab-pane fade in mytab" id="myContent" role="tabpanel" aria-labelledby="myPageContent-tab"" tabindex="0">

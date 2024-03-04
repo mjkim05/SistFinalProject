@@ -49,7 +49,9 @@ public class DBConn
 			{
 				dbConn.close();
 			}
-		}	
+		}
+		
+		dbConn = null;
 	}
 	
 }

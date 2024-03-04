@@ -14,6 +14,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <style type="text/css">
@@ -145,23 +147,65 @@
 	</div>
 	<br>
 	<div class="aaa">
-		<ul class="nav nav-tabs">
-			<li class="nav-item">
-				<a href="" class="nav-link active" aria-current="page">전체</a>
-			</li>
-			<li class="nav-item">
-				<a href="" class="nav-link active" aria-current="page">대기중</a>
-			</li>
-			<li class="nav-item">
-				<a href="" class="nav-link active" aria-current="page">처리중</a>
-			</li>
-			<li class="nav-item">
-				<a href="" class="nav-link active" aria-current="page">처리완료</a>
-			</li>
-		</ul>	
+		<nav class="nav nav-tabs reporttab" role="tablist">
+   			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			    <button class="nav-link active" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#allInquiry" 
+			    type="button" role="tab" aria-controls="allInquiry" aria-selected="true">전체</button>
+			    
+			    <button class="nav-link" id="nav-inquiryL-tab" data-bs-toggle="tab" data-bs-target="#inquiryL" 
+			    type="button" role="tab" aria-controls="inquiryL" aria-selected="false">접수완료</button>
+			    
+			    <button class="nav-link" id="nav-review-tab" data-bs-toggle="tab" data-bs-target="#inquiryReview" 
+			    type="button" role="tab" aria-controls="inquiryReview" aria-selected="false">관리자 검토중</button>
+			    
+			    <button class="nav-link" id="nav-completed-tab" data-bs-toggle="tab" data-bs-target="#inquiryCompleted" 
+			    type="button" role="tab" aria-controls="inquiryCompleted" aria-selected="false">처리완료</button>
+			</div>
+		</nav>	
+</div>
+	 <div class="tab-content" id="nav-tabContent">
+		 <div class="tab-pane fade show active" id="allInquiry" role="tabpanel" aria-labelledby="nav-all-tab">
+			<table class="table table-hover">
+				<tr>
+					<th>문의번호</th>
+					<th>문의유형</th>
+					<th>제목</th>
+					<th>문의날짜</th>
+					<th>상태</th>
+				</tr>
+				<c:forEach var="inquiryList" items="${inquiryList }">
+				<tr onclick="location.href='inquiryboard.woori?iq_code=${inquiryList.iq_code }'">
+					<td>${inquiryList.iq_code }</td>
+					<td>${inquiryList.iqc_name }</td>
+					<td>${inquiryList.iq_title }</td>
+					<td>${inquiryList.iq_date }</td>
+					<td>${inquiryList.iq_state }</td>
+				</tr>
+				</c:forEach>
+			</table>
+		 </div>
+		 <div class="tab-pane fade" id="inquiryL" role="tabpanel" aria-labelledby="nav-inquiryL-tab">
+			<table class="table table-hover">
+				<tr>
+					<th>문의번호</th>
+					<th>문의유형</th>
+					<th>제목</th>
+					<th>문의날짜</th>
+					<th>상태</th>
+				</tr>
+				<c:forEach var="inquiryList" items="${inquiryList }">
+				<tr onclick="location.href='inquirypost.woori?iq_code=${inquiryList.iq_code }'">
+					<td>${inquiryList.iq_code }</td>
+					<td>${inquiryList.iqc_name }</td>
+					<td>${inquiryList.iq_title }</td>
+					<td>${inquiryList.iq_date }</td>
+					<td>${inquiryList.iq_state }</td>
+				</tr>
+				</c:forEach>
+			</table>
+		 </div>
 	</div>
-	<br />
-	<table class="table">
+	<%-- <table class="table">
 		<tr>
 		<thead>
 			<th>문의번호</th>
@@ -180,7 +224,7 @@
 				<td>${inquiryList.iq_date }</td>
 				<td>${inquiryList.iq_state }</td>
 			</tr>
-		</c:forEach>
+		</c:forEach> --%>
 		<!-- <tr>
 			<td>1</td>
 			<td>친구</td>
@@ -202,9 +246,6 @@
 			<td>2024-01-10</td>
 			<td>처리완료</td>
 		</tr> -->
-		</tbody>	
-	</table>
-</div>
 
 
 
@@ -212,7 +253,7 @@
 <div class="footer col-xs-12 col-sm-12 col-md-12">
 	<footer>
 		<br> 
-		<a>이용약관</a> <a>개인정보처리방침</a> <a>우리만 정책</a> <a>고객센터</a> <a> ⓒ 우리만</a>
+		<a>이용약관</a> <a>개인정보처리방침</a> <a>우리만 정책</a> <a href="cs.woori">고객센터</a> <a> ⓒ 우리만</a>
 	</footer>
 </div>
 <br>

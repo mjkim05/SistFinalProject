@@ -365,7 +365,9 @@ table
 	         	<ul class="list-group list-group-flush">
 				<h3>왁자지껄 최신글</h3>
 				<c:forEach var="newborad" items="${newBorad }">
-					<li class="list-group-item list">${newborad.brd_subject }</li>
+					<c:if test="${newborad.brdr_code == null}">
+						<li class="list-group-item list">${newborad.brd_subject }</li>
+					</c:if>
 				</c:forEach>
 	  			<!-- 	<li class="list-group-item list">일단 최대한 레이아웃</li>
 	  				<li class="list-group-item list">위주로 정리 했습니다.</li>
@@ -378,7 +380,9 @@ table
 	         	<ul class="list-group list-group-flush">
 	  			<h3>히스토리 최신글</h3>
 	  				<c:forEach var="newHistory" items="${newHistory }">
-	  					<li class="list-group-item list">[ ${newHistory.mt_title } ]모임의 ${newHistory.gm_nickname }님 히스토리 입니다.</li>
+	  				<%-- 	<c:if test="${newHistory.his_title==null }"> --%>
+	  						<li class="list-group-item list">${newHistory.his_title }</li>
+	  				<%-- 	</c:if> --%>
 	  				</c:forEach>
 	  				<!-- <li class="list-group-item list">목요일 회식 후기</li>
 	  				<li class="list-group-item list">못가게 됐다..ㅠㅠ</li>
@@ -393,7 +397,7 @@ table
 	         	<div id = "notices">
 				<h3 class="notices">공지사항</h3>
 				<ol class="list-group list-group-numbered notices">
-				<a class="more">더보기 > </a>
+				<a class="more" href="noticeslist.woori">더보기 > </a>
 				<c:forEach var="notices" items="${noticesList }">
 			  		<li class="list-group-item notices">${notices.nf_title }</li>
 			  	</c:forEach>

@@ -1,8 +1,12 @@
+<%@page import="com.test.mybatis.GroupDTO"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+%>
+<%
+		
 %>
 <!DOCTYPE html>
 <html>
@@ -165,7 +169,7 @@
 		 </ul>	
 		 <div class="tab-content sidetab"> 
 		 <div class="tab-pane fade in active" id="groupProfile">
-		 	<sapn>${groupProfile.cg_name }</sapn> <br>
+		 	<sapn>${groupProfile.cg_name}</sapn> <br>
 		 	<div class="profileimg">
 		 		<img alt="깜찍한 고양이 사진" src="img/cat3.jpg">
 		 	</div>

@@ -116,7 +116,7 @@ hr
 
 	function faqSelect(fc_code)
 	{
-		window.location.href="faq.action?fc_code="+fc_code;
+		window.location.href="faq.woori?fc_code="+fc_code;
 	}
 
 </script>
@@ -152,7 +152,7 @@ hr
 		<div class="g-col-2 faqselect4"  onclick="faqSelect(4)">모임</div>
 		<div class="g-w-100"></div>
 		<div class="g-col-2 g-start-3 faqselect5" onclick="faqSelect(5)">경고</div>
-		<div class="g-col-2 faqselect"6 onclick="faqSelect(6)">신고</div>
+		<div class="g-col-2 faqselect6" onclick="faqSelect(6)">신고</div>
 		<div class="g-col-2 faqselect7" onclick="faqSelect(7)">포인트</div>
 		<div class="g-col-2 faqselect8" onclick="faqSelect(8)">기타</div>
 	</div>

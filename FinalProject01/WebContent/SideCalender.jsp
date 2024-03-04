@@ -108,18 +108,25 @@
 }
 
 </style>
+<script type="text/javascript">
+
+	
+</script>
 </head>
 <body>
 
 <div class="wrapper">
     <header>
         <div class="nav">
-          <button class="material-icons"><</button>
-          <p class="current-date">February 2024</p>
-          <button class="material-icons">></button>
+          <button class="material-icons" id="prevBtn"><</button>
+          <div class="current-date" id="currentMonth">February 2024</div>
+          <button class="material-icons" id="nextBtn">></button>
         </div>
       </header>
-      <div class="calendar">
+      
+</div>
+      
+<!--       <div class="calendar">
         <ul class="weeks">
           <li>일</li>
           <li>월</li>
@@ -129,7 +136,8 @@
           <li>금</li>
           <li>토</li>
         </ul>
-        <ul class="days">
+        <div class="days" id="calendarDates">
+        <ul>
           <li class="inactive">27</li>
           <li class="inactive">28</li>
           <li class="inactive">29</li>
@@ -166,23 +174,8 @@
           <li>30</li>
           <li>31</li>
         </ul>
-     </div>
-</div>
-
-
-
-
-<%-- <div>
-	<form action="" method="get">
-		<a href ="GroupMain_3.jsp?year=<%=preYear %>&month=<%=preMonth%>">◀</a>
-		<%=selectYear %>년
-		<%=selectMonth %>월
-		<a href ="GroupMain_3.jsp?year=<%=nextYear %>&month=<%=nextMonth%>">▶</a>
-		<br><br>
-		 <%=table %> 
-		<%=calStr %>
-	</form>
-</div>     --%>
+        </div>
+     </div> -->
 
 </body>
 </html>

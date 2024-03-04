@@ -202,7 +202,7 @@
 							<th>상태</th>
 	  					</tr>
 	  					<c:forEach var="allReportList" items="${allReportList }">
-	  					<tr>
+	  					<tr onclick="location.href='reportboard.woori?report_code=${allReportList.report_code }'">
 	  						<td>${allReportList.report_code }</td>
 							<td>${allReportList.report_type }</td>
 							<td>${allReportList.report_content }</td>

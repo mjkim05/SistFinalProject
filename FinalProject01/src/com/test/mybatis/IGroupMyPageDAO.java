@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public interface IGroupMyPageDAO
 {
-	public GroupDTO myGroupProfileList(String gm_code);				// 그룹 마이 프로필 조회
-	public UserDTO myProfileList(String us_code);					// 계정 정보 조회
+	public GroupDTO myGroupProfileList(String gm_code);							// 그룹 마이 프로필 조회
+	public UserDTO myProfileList(String us_code);								// 계정 정보 조회
 	
 	public ArrayList<BoardDTO> regularBoard(String gm_code);					// 정기 모임 조회
 	public ArrayList<BoardDTO> impromptuBoard(String gm_code);					// 번개 모임 조회
